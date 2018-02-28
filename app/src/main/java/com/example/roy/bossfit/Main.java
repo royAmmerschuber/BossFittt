@@ -61,7 +61,7 @@ public class Main extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_locations) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_plans) {
         
         } else if (id == R.id.nav_stopWatch) {

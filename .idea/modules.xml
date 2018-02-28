@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BossFit.iml" filepath="$PROJECT_DIR$/BossFit.iml" />
-      <module fileurl="file://C:\Users\Roy\AndroidStudioProjects\BossFit\BossFittt.iml" filepath="C:\Users\Roy\AndroidStudioProjects\BossFit\BossFittt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BossFittt.iml" filepath="$PROJECT_DIR$/BossFittt.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

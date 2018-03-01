@@ -50,15 +50,15 @@ public class EditPanel extends AppCompatActivity {
         AppDatabase db=AppDatabase.getAppDatabase(this);
         DBDAO dao=db.userDao();
         Plan p=new Plan();
-        p.setName(findViewById(R.id.));
-        dao.insertPlan();
+        /*p.setName(findViewById(R.id.));
+        dao.insertPlan();*/
 
         for (ConstraintLayout cl:exercises) {
             String name=((EditText)cl.getChildAt(0)).getText().toString();
             String sets=((EditText)cl.getChildAt(1)).getText().toString();
             String reps=((EditText)cl.getChildAt(2)).getText().toString();
             String weight=((EditText)cl.getChildAt(3)).getText().toString();
-            dao.insertPlan();
+            /*dao.insertPlan();*/
         }
     }
     public void removePressed(View view){

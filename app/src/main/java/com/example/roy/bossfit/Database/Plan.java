@@ -28,6 +28,24 @@ public class Plan {
         this.name = name;
     }
 
+    @ColumnInfo(name="Description")
+    private String description;
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ColumnInfo(name="image")
+    private long image;
+    public long getImage() {
+        return image;
+    }
+    public void setImage(long image) {
+        this.image = image;
+    }
+
     @ColumnInfo(name="profileFK")
     private long profileFK;
     public long getProfileFK() {

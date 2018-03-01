@@ -1,8 +1,10 @@
 package com.example.roy.bossfit;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditPanel extends AppCompatActivity {
-
+    public int imageId=1;
     List<ConstraintLayout> exercises;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,6 @@ public class EditPanel extends AppCompatActivity {
         exercises=new ArrayList<>();
 
     }
-
     public void addPressed(View view){
 
         LinearLayout list=(LinearLayout) findViewById(R.id.exerciseList);
@@ -47,6 +48,20 @@ public class EditPanel extends AppCompatActivity {
         exercises.add(con);
 
     }
+    public void editPlanImg(View view){
+        Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent,imageId);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+
+        }
+    }
+
     public void savePressed(View view){
         AppDatabase db=AppDatabase.getAppDatabase(this);
         DBDAO dao=db.userDao();
@@ -74,4 +89,5 @@ public class EditPanel extends AppCompatActivity {
         exercises.remove(view.getParent());
         ((ViewManager)view.getParent().getParent()).removeView((View)view.getParent());
     }
+
 }

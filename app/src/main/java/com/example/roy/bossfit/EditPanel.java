@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 
 import com.example.roy.bossfit.Database.AppDatabase;
 import com.example.roy.bossfit.Database.DBDAO;
+import com.example.roy.bossfit.Database.Exercise;
 import com.example.roy.bossfit.Database.Plan;
 
 import java.util.ArrayList;
@@ -50,16 +51,24 @@ public class EditPanel extends AppCompatActivity {
         AppDatabase db=AppDatabase.getAppDatabase(this);
         DBDAO dao=db.userDao();
         Plan p=new Plan();
-        /*p.setName(findViewById(R.id.));
-        dao.insertPlan();*/
+        p.setName(((EditText)findViewById(R.id.txtPlName)).getText().toString());
+        p.setProfileFK(1);
+        long pid= dao.insertPlan();
 
         for (ConstraintLayout cl:exercises) {
             String name=((EditText)cl.getChildAt(0)).getText().toString();
-            String sets=((EditText)cl.getChildAt(1)).getText().toString();
-            String reps=((EditText)cl.getChildAt(2)).getText().toString();
-            String weight=((EditText)cl.getChildAt(3)).getText().toString();
-            /*dao.insertPlan();*/
+            int sets=Integer.parseInt(((EditText)cl.getChildAt(1)).getText().toString());
+            int reps=Integer.parseInt(((EditText)cl.getChildAt(2)).getText().toString());
+            float weight=Float.parseFloat(((EditText)cl.getChildAt(3)).getText().toString());
+            Exercise e= new Exercise();
+            e.setName(name);
+            e.setSets(sets);
+            e.setRepetitions(reps);
+            e.setWeight(weight);
+            e.setPlanFK(pid);
+            dao.insertExercise(e);
         }
+
     }
     public void removePressed(View view){
         exercises.remove(view.getParent());

@@ -20,9 +20,9 @@ public interface DBDAO {
     List<Exercise> getExercises(int planID);
 
     @Insert
-    void insertUser(User... users);
+    long insertUser(User... users);
     @Insert
-    void insertPlan(Plan... plans);
+    long insertPlan(Plan... plans);
     @Insert
-    void insertExercise(Exercise... exercises);
+    long insertExercise(Exercise... exercises);
 }

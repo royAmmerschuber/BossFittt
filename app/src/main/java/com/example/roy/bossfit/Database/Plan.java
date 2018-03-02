@@ -10,12 +10,12 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Plan {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    public int getId() {
+    private long id;
+    public long getId() {
 
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -28,12 +28,30 @@ public class Plan {
         this.name = name;
     }
 
+    @ColumnInfo(name="Description")
+    private String description;
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ColumnInfo(name="image")
+    private long image;
+    public long getImage() {
+        return image;
+    }
+    public void setImage(long image) {
+        this.image = image;
+    }
+
     @ColumnInfo(name="profileFK")
-    private int profileFK;
-    public int getProfileFK() {
+    private long profileFK;
+    public long getProfileFK() {
         return profileFK;
     }
-    public void setProfileFK(int profileFK) {
+    public void setProfileFK(long profileFK) {
         this.profileFK = profileFK;
     }
 }

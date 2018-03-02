@@ -38,20 +38,20 @@ public class Plan {
     }
 
     @ColumnInfo(name="image")
-    private long image;
-    public long getImage() {
+    private String image;
+    public String getImage() {
         return image;
     }
-    public void setImage(long image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    @ColumnInfo(name="profileFK")
-    private long profileFK;
-    public long getProfileFK() {
-        return profileFK;
+    @ColumnInfo(name="userFK")
+    private long userFK;
+    public long getUserFK() {
+        return userFK;
     }
-    public void setProfileFK(long profileFK) {
-        this.profileFK = profileFK;
+    public void setUserFK(long userFK) {
+        this.userFK = userFK;
     }
 }

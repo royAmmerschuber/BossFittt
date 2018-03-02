@@ -28,5 +28,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     //Non-Static----------------------------------------------------------------
-    public abstract DBDAO userDao();
+    public abstract DBDAO DBDao();
 }

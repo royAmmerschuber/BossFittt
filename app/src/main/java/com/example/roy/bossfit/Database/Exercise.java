@@ -63,4 +63,13 @@ public class Exercise {
     public void setPlanFK(long planFK) {
         this.planFK = planFK;
     }
+
+    @ColumnInfo(name="image")
+    private String image;
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

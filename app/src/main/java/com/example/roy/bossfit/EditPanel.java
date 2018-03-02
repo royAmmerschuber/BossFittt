@@ -34,6 +34,9 @@ public class EditPanel extends AppCompatActivity {
         setContentView(R.layout.activity_edit_panel);
         exercises=new ArrayList<>();
         exPaths=new ArrayList<>();
+        if(getIntent().getIntExtra("edit",-10)==-10){
+
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

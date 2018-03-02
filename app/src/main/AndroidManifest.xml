@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".EditPanel"></activity>
         <activity android:name=".PlansList"></activity>
+        <activity android:name=".ProfilePanel"></activity>
+        <activity android:name=".DiscoverPlans"></activity>
     </application>
 
 </manifest>

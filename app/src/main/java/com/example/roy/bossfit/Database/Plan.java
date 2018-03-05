@@ -10,12 +10,12 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Plan {
     @PrimaryKey(autoGenerate = true)
-    private long id;
-    public long getId() {
+    private int id;
+    public int getId() {
 
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,11 +47,11 @@ public class Plan {
     }
 
     @ColumnInfo(name="userFK")
-    private long userFK;
-    public long getUserFK() {
+    private int userFK;
+    public int getUserFK() {
         return userFK;
     }
-    public void setUserFK(long userFK) {
+    public void setUserFK(int userFK) {
         this.userFK = userFK;
     }
 }

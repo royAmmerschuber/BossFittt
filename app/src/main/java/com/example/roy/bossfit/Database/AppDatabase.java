@@ -19,6 +19,9 @@ public abstract class AppDatabase extends RoomDatabase {
                             // Don't do this on a real app! See PersistenceBasicSample for an example.
                             .allowMainThreadQueries()
                             .build();
+            if(INSTANCE.DBDao().getUserCount()>0){
+                seed(INSTANCE);
+            }
         }
         return INSTANCE;
     }
@@ -29,4 +32,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
     //Non-Static----------------------------------------------------------------
     public abstract DBDAO DBDao();
+
+    private static void seed(AppDatabase db){
+        User u=new User();
+        u.setName("max muster");
+        DBDAO dao=db.DBDao();
+        dao.insertUser(u);
+    }
 }

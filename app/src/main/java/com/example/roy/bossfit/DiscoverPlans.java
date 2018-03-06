@@ -3,6 +3,7 @@ package com.example.roy.bossfit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -24,18 +25,22 @@ import java.util.List;
         private SectionsPageAdapter mSectionsPageAdapter;
         private ExpandableListView listView;
         private ExpandableListAdapter listAdapter;
-        private List<String> listDataHeader;
-        private HashMap<String,List<String>> listHash;
+        private List<Plan> listDataHeader;
+
+        @Override
+        protected void onRestart() {
+            super.onRestart();
+
+        }
 
         protected void onCreate(Bundle savedInstanceState)
         {
-
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_discover_plans);
 
             listView = (ExpandableListView)findViewById(R.id.lvExp);
             initData();
-            listAdapter = new ExpandableListAdapter(this,listDataHeader,listHash);
+            listAdapter = new ExpandableListAdapter(this,listDataHeader);
             listView.setAdapter(listAdapter);
 
         }
@@ -43,49 +48,8 @@ import java.util.List;
         private void initData()
         {
 
-            listDataHeader = new ArrayList<>();
-            listHash = new HashMap<>();
-
-//            listDataHeader.add("Oberkörper");
-//            listDataHeader.add("Unterkörper");
-//
-//            List<String> oberKörper = new ArrayList<>();
-//            oberKörper.add("biceps");
-//            oberKörper.add("rücken");
-//            oberKörper.add("bauch");
-//
-//            List<String> unterKörper = new ArrayList<>();
-//            unterKörper.add("beine");
-//
-//            listHash.put(listDataHeader.get(0),oberKörper);
-//            listHash.put(listDataHeader.get(1),unterKörper);
-
             DBDAO dao=AppDatabase.getAppDatabase(this).DBDao();
-            List<Plan> plans=dao.getPlans(1);
-            for (Plan p:plans)
-            {
-                int x = 0;
-                List<String> exerciceList = new ArrayList<>();
-                List<Exercise> exercises = dao.getExercises(p.getId());
-                for(Exercise e:exercises)
-                {
-
-                    exerciceList.add(e.getName());
-                }
-                listDataHeader.add(p.getName());
-                listHash.put(listDataHeader.get(x),exerciceList);
-                x++;
-            }
-
-            Exercise e= new Exercise();
-            e.setName("Biceps Curls");
-            e.setPlanFK(1);
-            e.setRepetitions(5);
-            e.setSets(10);
-            e.setWeight(20);
-            dao.insertExercise(e);
-
-
+            listDataHeader=dao.getPlans(1);
         }
 
         public void addClicked(View view){

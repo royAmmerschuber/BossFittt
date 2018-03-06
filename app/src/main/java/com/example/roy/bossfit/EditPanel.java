@@ -152,6 +152,7 @@ public class EditPanel extends AppCompatActivity {
                 dao.insertExercise(e);
             }
         }
+        finish();
     }
 
 

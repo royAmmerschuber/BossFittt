@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.List;
+
 /**
  * Created by Roy on 28/02/2018.
  */
@@ -54,4 +56,5 @@ public class Plan {
     public void setUserFK(int userFK) {
         this.userFK = userFK;
     }
+
 }

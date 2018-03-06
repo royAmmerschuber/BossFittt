@@ -15,7 +15,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/exercise"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imgEx"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -91,7 +91,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/repetitions"
             app:layout_constraintBaseline_toBaselineOf="@+id/txtExReps"
-            app:layout_constraintStart_toEndOf="@+id/imageView3" />
+            app:layout_constraintStart_toEndOf="@+id/imgEx" />
 
         <TextView
             android:id="@+id/textView4"
@@ -100,7 +100,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/weight"
             app:layout_constraintBaseline_toBaselineOf="@+id/txtExWeights"
-            app:layout_constraintStart_toEndOf="@+id/imageView3" />
+            app:layout_constraintStart_toEndOf="@+id/imgEx" />
 
         <TextView
             android:id="@+id/textView6"

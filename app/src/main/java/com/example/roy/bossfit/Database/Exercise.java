@@ -10,11 +10,11 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Exercise {
     @PrimaryKey(autoGenerate = true)
-    private long id;
-    public long getId() {
+    private int id;
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

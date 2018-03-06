@@ -19,12 +19,12 @@
             android:textColor="@android:color/white"
             android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="add" />
+        <!--<Button-->
+            <!--android:id="@+id/button4"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="add" />-->
     </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -50,6 +51,13 @@ public class Main extends AppCompatActivity
     public void discoverPlans(View view){
         Intent i= new Intent(this,DiscoverPlans.class);
         startActivity(i);
+    }
+
+    public void openMap(View view){
+        Uri intentUri=Uri.parse("geo:0,0?q=gym");
+        Intent mapIntent=new Intent(Intent.ACTION_VIEW,intentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 
     public void timer(View view){

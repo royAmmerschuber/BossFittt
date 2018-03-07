@@ -34,4 +34,7 @@ public interface DBDAO {
 
     @Query("delete from exercise where planFK=:planID")
     void deleteExercises(int planID);
+
+    @Query("delete from `Plan` where id=:id")
+    void deletePlan(int id);
 }

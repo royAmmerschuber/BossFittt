@@ -1,14 +1,16 @@
 package com.example.roy.bossfit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.example.roy.bossfit.Database.AppDatabase;
 import com.example.roy.bossfit.Database.DBDAO;
-import com.example.roy.bossfit.Database.Exercise;
 import com.example.roy.bossfit.Database.Plan;
 
 import java.util.ArrayList;
@@ -21,75 +23,76 @@ import java.util.List;
 
     public class DiscoverPlans extends AppCompatActivity
     {
-        private SectionsPageAdapter mSectionsPageAdapter;
         private ExpandableListView listView;
         private ExpandableListAdapter listAdapter;
-        private List<String> listDataHeader;
-        private HashMap<String,List<String>> listHash;
+        private List<Plan> listDataHeader;
+
+        @Override
+        protected void onRestart() {
+            super.onRestart();
+            initData();
+        }
 
         protected void onCreate(Bundle savedInstanceState)
         {
-
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_discover_plans);
 
             listView = (ExpandableListView)findViewById(R.id.lvExp);
+            listAdapter = new ExpandableListAdapter(this);
             initData();
-            listAdapter = new ExpandableListAdapter(this,listDataHeader,listHash);
             listView.setAdapter(listAdapter);
 
         }
 
         private void initData()
         {
-
-            listDataHeader = new ArrayList<>();
-            listHash = new HashMap<>();
-
-//            listDataHeader.add("Oberkörper");
-//            listDataHeader.add("Unterkörper");
-//
-//            List<String> oberKörper = new ArrayList<>();
-//            oberKörper.add("biceps");
-//            oberKörper.add("rücken");
-//            oberKörper.add("bauch");
-//
-//            List<String> unterKörper = new ArrayList<>();
-//            unterKörper.add("beine");
-//
-//            listHash.put(listDataHeader.get(0),oberKörper);
-//            listHash.put(listDataHeader.get(1),unterKörper);
-
             DBDAO dao=AppDatabase.getAppDatabase(this).DBDao();
-            List<Plan> plans=dao.getPlans(1);
-            for (Plan p:plans)
-            {
-                int x = 0;
-                List<String> exerciceList = new ArrayList<>();
-                List<Exercise> exercises = dao.getExercises(p.getId());
-                for(Exercise e:exercises)
-                {
-
-                    exerciceList.add(e.getName());
-                }
-                listDataHeader.add(p.getName());
-                listHash.put(listDataHeader.get(x),exerciceList);
-                x++;
-            }
-
-            Exercise e= new Exercise();
-            e.setName("Biceps Curls");
-            e.setPlanFK(1);
-            e.setRepetitions(5);
-            e.setSets(10);
-            e.setWeight(20);
-            dao.insertExercise(e);
-
-
+            listDataHeader=dao.getPlans(1);
+            listAdapter.setData(listDataHeader);
         }
 
         public void addClicked(View view){
             startActivity(new Intent(this,EditPanel.class));
+        }
+
+        public void removeClicked(View view){
+            final int i=(int)((View)view.getParent()).getTag();
+            Log.i("remove",i+"");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure you want to delete this nice plan?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    AppDatabase.getAppDatabase(null).DBDao().deletePlan(i);
+
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+            initData();
+        }
+
+        public void editClicked(View view){
+            int i=(int)((View)view.getParent()).getTag();
+            Log.i("edit",i+"");
+            startActivity(new Intent(this,EditPanel.class).putExtra("edit", i));
+
         }
 
     }

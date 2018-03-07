@@ -1,13 +1,19 @@
 package com.example.roy.bossfit;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.roy.bossfit.Database.AppDatabase;
 import com.example.roy.bossfit.Database.DBDAO;
@@ -37,16 +43,44 @@ import java.util.List;
         {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_discover_plans);
-
-            listView = (ExpandableListView)findViewById(R.id.lvExp);
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+            }
+                listView = (ExpandableListView)findViewById(R.id.lvExp);
             listAdapter = new ExpandableListAdapter(this);
             initData();
             listView.setAdapter(listAdapter);
 
         }
 
-        private void initData()
-        {
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            switch (requestCode) {
+                case 1: {
+
+                    // If request is cancelled, the result arrays are empty.
+                    if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                        // permission was granted, yay! Do the
+                        // contacts-related task you need to do.
+                    } else {
+
+                        // permission denied, boo! Disable the
+                        // functionality that depends on this permission.
+                        finish();
+                    }
+                    return;
+                }
+            }
+        }
+
+        private void initData(){
             DBDAO dao=AppDatabase.getAppDatabase(this).DBDao();
             listDataHeader=dao.getPlans(1);
             listAdapter.setData(listDataHeader);

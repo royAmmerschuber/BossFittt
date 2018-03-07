@@ -6,16 +6,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
-
-import java.util.StringTokenizer;
 
 /**
  * Created by jerom.rajan on 06.03.2018.
  */
 
-public class Timer extends AppCompatActivity
+public class TimerControl extends AppCompatActivity
 {
     public int time= 90;
     public int restTime = 30;
@@ -113,7 +110,7 @@ public class Timer extends AppCompatActivity
 
     public void workInterval(View view)
     {
-        Intent i= new Intent(this,IntervalWork.class);
+        Intent i= new Intent(this,TimerRunning.class);
         i.putExtra("sets",set);
         i.putExtra("workTime", workTime);
         i.putExtra("restTime", restTime);

@@ -178,4 +178,5 @@ public class EditPanel extends AppCompatActivity {
         Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent,REQ_EX_IMG+exercises.indexOf(view.getParent()));
     }
+
 }

@@ -7,4 +7,7 @@
     <color name="darkGrey">#f2f2f2</color>
     <color name="green">#BBDB22</color>
     <color name="red">#FF3321</color>
+    <color name="timerBlue">#2db2ff</color>
+    <color name="timerGreen">#17dd1e</color>
+    <color name="timerRed">#ff3131</color>
 </resources>

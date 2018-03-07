@@ -189,12 +189,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/magnifyingglass" />
+                        android:src="@drawable/dumbbell" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Discover Plans"
+                        android:text="Workout"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"

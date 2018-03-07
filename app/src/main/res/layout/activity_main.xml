@@ -213,6 +213,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_rowWeight="1"
+                android:onClick="timer"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 

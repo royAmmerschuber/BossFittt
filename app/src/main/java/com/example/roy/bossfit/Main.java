@@ -52,4 +52,14 @@ public class Main extends AppCompatActivity
         startActivity(i);
     }
 
+    public void timer(View view){
+        Intent i= new Intent(this,Timer.class);
+        startActivity(i);
+    }
+
+
+
+
+
+
 }

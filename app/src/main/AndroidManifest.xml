@@ -23,6 +23,9 @@
         <activity android:name=".PlansList"></activity>
         <activity android:name=".ProfilePanel"></activity>
         <activity android:name=".DiscoverPlans"></activity>
+        <activity android:name=".Timer"></activity>
+        <activity android:name=".IntervalWork"></activity>
+        <!--<activity android:name=".Inter"></activity>-->
     </application>
 
 </manifest>

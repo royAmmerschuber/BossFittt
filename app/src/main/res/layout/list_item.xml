@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintlayout1"
+        android:id="@+id/cstElement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -58,14 +58,44 @@
         android:id="@+id/lstExercises"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintlayout1"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/cstElement">
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@android:style/Widget.Material.Light.ImageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="removeClicked"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lstExercises"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        style="@android:style/Widget.Material.Light.ImageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="editClicked"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/lstExercises"
+        app:srcCompat="@drawable/edit" />
 
 </android.support.constraint.ConstraintLayout>

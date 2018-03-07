@@ -42,6 +42,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             listHashMap.put(p,l);
         }
     }
+    public ExpandableListAdapter(Context context){
+        this.context=context;
+    }
 
     @Override
     public int getGroupCount() {
@@ -109,6 +112,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if(!Objects.equals(p.getImage(), "")&&p.getImage()!=null) {
             imgPlan.setImageURI(Uri.parse(p.getImage()));
         }
+        view.setTag(p.getId());
 
         DBDAO dao=AppDatabase.getAppDatabase(context).DBDao();
         List<Exercise> exercises= dao.getExercises(p.getId());
@@ -137,4 +141,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
+
+    public void setData(List<Plan> listDataHeader,HashMap<Plan,List<Plan>> listHashMap) {
+        this.listDataHeader = listDataHeader;
+        this.listHashMap=listHashMap;
+        notifyDataSetChanged();
+    }
+
 }

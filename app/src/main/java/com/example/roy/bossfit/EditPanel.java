@@ -37,7 +37,7 @@ public class EditPanel extends AppCompatActivity {
         exercises=new ArrayList<>();
         exPaths=new ArrayList<>();
         if(getIntent().getIntExtra("edit",-10)!=-10){
-            id=getIntent().getIntExtra("edut",-10);
+            id=getIntent().getIntExtra("edit",-10);
             DBDAO db=AppDatabase.getAppDatabase(this).DBDao();
             Plan p=db.getPlan(id);
             path=p.getImage();

@@ -49,13 +49,7 @@ import java.util.List;
         {
             DBDAO dao=AppDatabase.getAppDatabase(this).DBDao();
             listDataHeader=dao.getPlans(1);
-            HashMap<Plan,List<Plan>> h=new HashMap<>();
-            for(Plan p:listDataHeader){
-                List<Plan> l=new ArrayList<>();
-                l.add(p);
-                h.put(p,l);
-            }
-            listAdapter.setData(listDataHeader,h);
+            listAdapter.setData(listDataHeader);
         }
 
         public void addClicked(View view){

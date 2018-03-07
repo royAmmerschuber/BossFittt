@@ -30,17 +30,10 @@ import java.util.Objects;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Plan> listDataHeader;
-    private HashMap<Plan,List<Plan>> listHashMap;
 
     public ExpandableListAdapter(Context context, List<Plan> listDataHeader) {
         this.context = context;
         this.listDataHeader = listDataHeader;
-        listHashMap=new HashMap<>();
-        for (Plan p:listDataHeader) {
-            List<Plan> l=new ArrayList<>();
-            l.add(p);
-            listHashMap.put(p,l);
-        }
     }
     public ExpandableListAdapter(Context context){
         this.context=context;
@@ -53,7 +46,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        return listHashMap.get(listDataHeader.get(i)).size();
+        return 1;
     }
 
     @Override
@@ -63,7 +56,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int i, int i1) {
-        return listHashMap.get(listDataHeader.get(i)).get(i1); // i = Group Item , i1 = ChildItem
+        return listDataHeader.get(i); // i = Group Item , i1 = ChildItem
     }
 
     @Override
@@ -117,9 +110,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         DBDAO dao=AppDatabase.getAppDatabase(context).DBDao();
         List<Exercise> exercises= dao.getExercises(p.getId());
         lstExercises.removeAllViews();
+        boolean odd=true;
         for(Exercise e:exercises){
 
-            View c=inflater.inflate(R.layout.plan_list_exercise,lstExercises,true);
+            View c=inflater.inflate(R.layout.plan_list_exercise,lstExercises,false);
+            if(odd){
+                c.setBackgroundColor(context.getResources().getColor(R.color.darkGrey,context.getTheme()));
+            }
             TextView txtExName=c.findViewById(R.id.txtName);
             TextView txtSets=c.findViewById(R.id.txtSets);
             TextView txtRepetitions=c.findViewById(R.id.txtRepetitions);
@@ -133,6 +130,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 imgEx.setImageURI(Uri.parse(e.getImage()));
 
             }
+            lstExercises.addView(c);
+            odd=!odd;
         }
         return view;
     }
@@ -142,9 +141,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public void setData(List<Plan> listDataHeader,HashMap<Plan,List<Plan>> listHashMap) {
+    public void setData(List<Plan> listDataHeader) {
         this.listDataHeader = listDataHeader;
-        this.listHashMap=listHashMap;
         notifyDataSetChanged();
     }
 

@@ -26,6 +26,7 @@ public class EditPanel extends AppCompatActivity {
     private static final int REQ_PL_IMG = 1;
     private static final int REQ_EX_IMG = 2;
 
+    private boolean odd=true;
     private String path;
     List<ConstraintLayout> exercises;
     List<String> exPaths;
@@ -52,8 +53,8 @@ public class EditPanel extends AppCompatActivity {
                 LayoutInflater inf=LayoutInflater.from(this);
                 ConstraintLayout con=(ConstraintLayout) inf.inflate(R.layout.edit_exercise, null, false);
                 ((EditText)con.findViewById(R.id.txtExName)).setText(e.getName());
-                ((EditText)con.findViewById(R.id.txtExReps)).setText(e.getRepetitions());
-                ((EditText)con.findViewById(R.id.txtExSets)).setText(e.getSets());
+                ((EditText)con.findViewById(R.id.txtExReps)).setText(Integer.toString(e.getRepetitions()));
+                ((EditText)con.findViewById(R.id.txtExSets)).setText(Integer.toString(e.getSets()));
                 ((EditText)con.findViewById(R.id.txtExWeights)).setText(Float.toString(e.getWeight()));
                 String expath=e.getImage();
                 if(!Objects.equals(expath, "")&&expath!=null) {
@@ -98,11 +99,13 @@ public class EditPanel extends AppCompatActivity {
         LinearLayout list= findViewById(R.id.exerciseList);
         LayoutInflater inf=LayoutInflater.from(this);
         ConstraintLayout con=(ConstraintLayout) inf.inflate(R.layout.edit_exercise, null, false);
-
+        if(odd){
+            con.setBackgroundColor(getResources().getColor(R.color.darkGrey,getTheme()));
+        }
         list.addView(con);
         exercises.add(con);
         exPaths.add("");
-
+        odd=!odd;
     }
     public void savePressed(View view){
         AppDatabase db = AppDatabase.getAppDatabase(this);

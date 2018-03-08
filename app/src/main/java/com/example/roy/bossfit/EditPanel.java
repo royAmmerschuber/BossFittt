@@ -23,14 +23,36 @@ import java.util.List;
 import java.util.Objects;
 
 public class EditPanel extends AppCompatActivity {
+    /**
+     * request codes for return from gallery
+     */
     private static final int REQ_PL_IMG = 1;
     private static final int REQ_EX_IMG = 2;
-
+    /**
+     * value for changing background color on every second exercise
+     */
     private boolean odd=true;
+    /**
+     * path of plan image
+     */
     private String path;
+    /**
+     * list of edit exercise elements
+     */
     List<ConstraintLayout> exercises;
+    /**
+     * list of image paths for the exercises
+     */
     List<String> exPaths;
+    /**
+     * id of current plan for edit mode
+     */
     Integer id;
+
+    /**
+     * loads layout and if edit mode then it also loads the data from selected plan
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +91,13 @@ public class EditPanel extends AppCompatActivity {
 
         }
     }
+
+    /**
+     * handles selection of images
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -88,12 +117,20 @@ public class EditPanel extends AppCompatActivity {
         }
     }
 
+    /**
+     * opens image dialog for the plan image
+     * @param view
+     */
     public void editPlanImg(View view){
         Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent,REQ_PL_IMG);
 
     }
 
+    /**
+     * adds another exercise element
+     * @param view
+     */
     public void addPressed(View view){
 
         LinearLayout list= findViewById(R.id.exerciseList);
@@ -107,6 +144,11 @@ public class EditPanel extends AppCompatActivity {
         exPaths.add("");
         odd=!odd;
     }
+
+    /**
+     * saves data to database
+     * @param view
+     */
     public void savePressed(View view){
         AppDatabase db = AppDatabase.getAppDatabase(this);
         DBDAO dao = db.DBDao();
@@ -159,7 +201,9 @@ public class EditPanel extends AppCompatActivity {
     }
 
 
-
+    /**
+     * loads the images for the exercises from the path list
+     */
     public void loadExImages(){
         for(int i=0;i<exercises.size();i++){
             ConstraintLayout cl=exercises.get(i);
@@ -168,12 +212,20 @@ public class EditPanel extends AppCompatActivity {
         }
     }
 
+    /**
+     * removes exercise of View view
+     * @param view
+     */
     public void removePressed(View view){
         exPaths.remove(exercises.indexOf(view.getParent()));
         exercises.remove(view.getParent());
         ((ViewManager)view.getParent().getParent()).removeView((View)view.getParent());
     }
 
+    /**
+     * loads image selector for selected exercise
+     * @param view
+     */
     public void editExImage(View view){
         Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent,REQ_EX_IMG+exercises.indexOf(view.getParent()));

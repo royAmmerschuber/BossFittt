@@ -6,6 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by Roy on 28/02/2018.
+ * User element of database
  */
 @Entity
 public class User {

@@ -6,6 +6,7 @@ import android.content.Context;
 
 /**
  * Created by Roy on 28/02/2018.
+ * Database based on room
  */
 @android.arch.persistence.room.Database(entities={User.class,Plan.class,Exercise.class}, version=1)
 public abstract class AppDatabase extends RoomDatabase {

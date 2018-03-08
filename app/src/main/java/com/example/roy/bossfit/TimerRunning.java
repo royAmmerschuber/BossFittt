@@ -16,24 +16,48 @@ import android.widget.TextView;
 
 public class TimerRunning extends AppCompatActivity
 {
+    /**
+     * states of the timer also the titles for the states
+     */
     private final static String STATE_START ="Get Ready";
     private final static String STATE_WORK="Work";
     private final static String STATE_REST="Rest";
     private final static String STATE_FINISHED="Finished";
-
+    /**
+     * curren state
+     */
     private String state =STATE_START;
+    /**
+     * Textviews for displaying information
+     */
     private TextView txtText;
     private TextView txtTimer;
     private TextView txtSet;
+    /**
+     * background to set bgColor
+     */
     private ConstraintLayout bg;
+    /**
+     * counter for counting
+     */
     private CountDownTimer counter;
-
+    /**
+     * if element is paused
+     */
     private boolean paused=false;
+    /**
+     * work,restime and amount of sets
+     */
     private int workTime = 0;
     private int restTime = 0;
     private int sets = 0;
-
+    /**
+     * how many sets are done
+     */
     private int finishedSets=0;
+    /**
+     * the current time of displayed timer
+     */
     private int currentTime=10;
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,16 +90,26 @@ public class TimerRunning extends AppCompatActivity
         };
         counter.start();
     }
+
+    /**
+     * updates every second
+     */
     public void countdown(){
         currentTime-=1;
         txtTimer.setText(getTime(currentTime));
     }
 
+    /**
+     * closes app
+     */
     @Override
     public void onBackPressed() {
         finish();
     }
 
+    /**
+     * ends the timer
+     */
     public void Tfinish(){
 
         switch(state){
@@ -122,6 +156,10 @@ public class TimerRunning extends AppCompatActivity
 
     }
 
+    /**
+     * pause button pauses timer
+     * @param view
+     */
     public void onPause(View view){
         FloatingActionButton b=findViewById(R.id.timerPause);
 
@@ -156,6 +194,11 @@ public class TimerRunning extends AppCompatActivity
         paused=!paused;
     }
 
+    /**
+     * generates timeString out of seconds
+     * @param seconds
+     * @return
+     */
     private String getTime(int seconds){
         float s=seconds;
         double m=Math.floor(s/60);

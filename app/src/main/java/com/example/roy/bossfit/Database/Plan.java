@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by Roy on 28/02/2018.
+ * Plan element of database
  */
 @Entity
 public class Plan {

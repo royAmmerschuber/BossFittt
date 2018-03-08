@@ -27,6 +27,10 @@ import java.util.Objects;
  * Created by jerom.rajan on 02.03.2018.
  */
 
+/**
+ * adapter for expandable list view
+ * modified to only have one element in each dropdown
+ */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Plan> listDataHeader;
@@ -74,6 +78,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
+    /**
+     * shows the header with name of plan
+     * @param i
+     * @param b
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         String headerTitle = ((Plan)getGroup(i)).getName();
@@ -89,6 +101,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return view;
     }
 
+    /**
+     * Displays image and description of plan and a list of exercises with image and data
+     * @param i
+     * @param i1
+     * @param b
+     * @param view
+     * @param viewGroup
+     * @return
+     */
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final Plan p = (Plan)getChild(i,i1);
@@ -136,11 +157,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return view;
     }
 
+
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
 
+    /**
+     * replaces data and notifies change
+     * @param listDataHeader
+     */
     public void setData(List<Plan> listDataHeader) {
         this.listDataHeader = listDataHeader;
         notifyDataSetChanged();

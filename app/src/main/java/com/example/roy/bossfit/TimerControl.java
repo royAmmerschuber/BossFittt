@@ -12,6 +12,9 @@ import android.widget.TextView;
  * Created by jerom.rajan on 06.03.2018.
  */
 
+/**
+ * control element for the interval timer
+ */
 public class TimerControl extends AppCompatActivity
 {
     public int time= 90;
@@ -108,6 +111,10 @@ public class TimerControl extends AppCompatActivity
         });
     }
 
+    /**
+     * sets worktime
+     * @param view
+     */
     public void workInterval(View view)
     {
         Intent i= new Intent(this,TimerRunning.class);
@@ -117,7 +124,11 @@ public class TimerControl extends AppCompatActivity
         startActivity(i);
     }
 
-
+    /**
+     * returns time
+     * @param time
+     * @param view
+     */
     public void getNewTime(int time, TextView view)
     {
         int minutes = (int)Math.floor(time/60);

@@ -19,11 +19,6 @@ public class Main extends AppCompatActivity
         setContentView(R.layout.content_main);
     }
 
-    public void openProfile(View view){
-        Intent i= new Intent(this,ProfilePanel.class);
-        startActivity(i);
-    }
-
     public void discoverPlans(View view){
         Intent i= new Intent(this,DiscoverPlans.class);
         startActivity(i);
